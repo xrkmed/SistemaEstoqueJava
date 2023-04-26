@@ -9,10 +9,12 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class Estoque {
+import Interfaces.EstoqueInterface;
+
+public class Estoque implements EstoqueInterface{
 	
 	// Produto e estoque disponivel
-	private HashMap<Produtos, Integer> produtosEstoque = new HashMap();
+	private final HashMap<Produtos, Integer> produtosEstoque = new HashMap();
 	
 	public Estoque() {
 		
