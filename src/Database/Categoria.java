@@ -2,8 +2,10 @@ package Database;
 
 import java.util.ArrayList;
 
-public class Categoria {
-    
+import Interfaces.CategoriaInterface;
+
+public class Categoria implements CategoriaInterface{
+
     public static Integer GlobalID = 0;
 
     private Integer id;  // id da categoria
