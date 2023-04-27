@@ -3,18 +3,15 @@ package Database;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 import Interfaces.EstoqueInterface;
 
 public class Estoque implements EstoqueInterface{
 	
 	// Produto e estoque disponivel
-	private final HashMap<Produtos, Integer> produtosEstoque = new HashMap();
+	private final HashMap<Produtos, Integer> produtosEstoque = new HashMap<>();
 	
 	public Estoque() {
 		
@@ -49,7 +46,7 @@ public class Estoque implements EstoqueInterface{
 	
 	//Executa uma query definida pelo usuario para retornar uma lista com os produtos que satisfazem o predicado especificado
 	public List<Produtos> getProdutos(BiPredicate<? super Produtos, ? super Integer> predicate){
-		List<Produtos> result = new ArrayList();
+		List<Produtos> result = new ArrayList<>();
 		produtosEstoque.forEach((produto, quantidade) -> {
 			if(predicate.test(produto, quantidade)) {
 				result.add(produto);

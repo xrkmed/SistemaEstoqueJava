@@ -57,6 +57,10 @@ public class Produtos implements ProdutosInterface {
 		quantidade += difference;
 		return quantidade;
 	}
+
+	public String getNome(){
+		return nome;
+	}
 	
 	//Apenas para usos da classe database
 	public boolean manipularQuantidade(BiPredicate<? super Integer, ? super Integer> query) {
