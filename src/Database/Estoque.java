@@ -60,6 +60,18 @@ public class Estoque implements EstoqueInterface{
 		
 		return result;
 	}
+
+	// Separar produtos por categorias
+	public List<Produtos> getProdutosByCategoria(Categoria categoria){
+		List<Produtos> result = new ArrayList<>();
+		produtosEstoque.forEach((produto, quantidade) -> {
+			if(produto.hasCategoriaId(categoria.getId())) {
+				result.add(produto);
+			}
+		});
+		
+		return result;
+	}
 	
 	public Integer getQuantity(Produtos product) {
 		if(produtosEstoque.containsKey(product)) {
