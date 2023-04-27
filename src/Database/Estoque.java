@@ -29,17 +29,22 @@ public class Estoque implements EstoqueInterface{
 	
 	//Acrescenta produtos no estoque
 	public Produtos addEstoque(Produtos product, Integer quantity) {
-		if(produtosEstoque.containsKey(product)) {
-			updateEstoque(product.getId(), (Produtos p, Integer q) -> { q += quantity; return quantity; });
-		}		
+		produtosEstoque.compute(product, (produto, q) -> {
+			if(product.getId() == produto.getId()) {
+				q += quantity;	
+				return q;
+			}
+			
+			return 0;
+		});
 		
 		return product;
 	}
 	
 	
 	//Atualizar o estoque de uma maneira que seja auto implementavel pelo desenvolvedor
-	public boolean updateEstoque(int produtoId, BiFunction<? super Produtos, ? super Integer, ? extends Integer> bifunc) {
-		produtosEstoque.compute(new Produtos(produtoId), bifunc);
+	public boolean updateEstoque(Produtos product, BiFunction<? super Produtos, ? super Integer, ? extends Integer> bifunc) {
+		produtosEstoque.compute(product, bifunc);
 		
 		return true;
 	}
@@ -67,7 +72,7 @@ public class Estoque implements EstoqueInterface{
 	public void imprimirResumoEstoque() {
 		produtosEstoque.forEach((Produtos p, Integer Estoque) -> {
 			System.out.println("\nProduto Id: " + p.getId() +
-					" com " + (Estoque == 1 ? "apenas " : " ") + Estoque + " estoque " + (Estoque == 1 ? "disponivel" : "disponiveis"));
+					" com " + (Estoque == 1 ? "apenas " : "") + Estoque + " estoque " + (Estoque == 1 ? "disponivel" : "disponiveis"));
 			
 		});
 	}

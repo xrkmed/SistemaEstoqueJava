@@ -11,7 +11,6 @@ public class Produtos implements ProdutosInterface {
 	
 	private int id;
 	private String nome;
-	private int quantidade;
 	private double price;
 	
 	public Produtos() {
@@ -23,52 +22,25 @@ public class Produtos implements ProdutosInterface {
 	public Produtos(int id) {
 		this.id = id;
 		this.nome = "Virtual Item";
-		this.quantidade = 1;
 		this.price = 1;
 	}
 	
-	public Produtos(String nome, int quantidade, double price) {
+	public Produtos(String nome, double price) {
 		this();
-		this.quantidade = quantidade;
 		this.price = price;
 	}
 	
-	public Produtos(int id, String nome, int quantidade, double price) {
+	public Produtos(int id, String nome, double price) {
 		this.id = id;
-		this.quantidade = quantidade;
 		this.price = price;
 	}
 	
 	public double getTotalValue() { 
-		return Math.max(this.price*this.quantidade, 1);
+		return this.price;
 	};
 	
-	public int removeQuantidade(int difference) {
-		quantidade -= Math.max(difference, 0);
-		
-		return quantidade;
-	}
-	
-	public int addQuantidade(int difference) {
-		if(difference < 1) {
-			return removeQuantidade(difference);
-		}
-		
-		quantidade += difference;
-		return quantidade;
-	}
-
 	public String getNome(){
 		return nome;
-	}
-	
-	//Apenas para usos da classe database
-	public boolean manipularQuantidade(BiPredicate<? super Integer, ? super Integer> query) {
-		if(query.test(this.id, this.quantidade)) {
-			return true;
-		}
-		
-		return false;
 	}
 	
 	public int getId() {
